@@ -1,6 +1,6 @@
+import React from "react";
 import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel } from '@mui/material';
 import { useField } from 'formik';
-import React from 'react';
 import { FieldCheckBoxProps } from '../../types';
 
 
