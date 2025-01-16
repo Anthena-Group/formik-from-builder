@@ -52,5 +52,8 @@
   "peerDependencies": {
     "react": "^16.8 || ^17 || ^18",
     "react-dom": "^16.8 || ^17 || ^18"
+  },
+  "publishConfig": {
+    "@anthenagroup:registry": "https://npm.pkg.github.com"
   }
 }
