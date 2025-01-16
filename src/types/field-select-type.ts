@@ -1,17 +1,17 @@
-import { RadioProps } from '@mui/joy/Radio';
 import { BasicInputType } from './basic-input-type';
 import { InputTypes } from './input-types';
 import { OptionType } from './common-types';
+import { SelectProps } from '@mui/joy/Select';
 
 
-export type FieldRadioProps = RadioProps & {
+export type FieldSelectProps = SelectProps<any, any> & {
     name: string;
-    groupLabel?: string;
+    label?: string;
     helperText?: string;
     options: OptionType[];
 };
 
-export interface FieldRadioType
-  extends BasicInputType<InputTypes.RADIO, RadioProps> {
+export interface FieldSelectType
+  extends BasicInputType<InputTypes.SELECT,  SelectProps<any, any>> {
     options: OptionType[];
 }

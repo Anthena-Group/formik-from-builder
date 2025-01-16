@@ -1,7 +1,16 @@
-import { TextFieldProps } from '@mui/material';
+import { InputProps } from '@mui/joy/Input';
 import { BasicInputType } from './basic-input-type';
 import { InputTypes } from './input-types';
 
-export interface FieldTextType extends BasicInputType<InputTypes.TEXT, TextFieldProps> {
+
+
+export type FieldTextProps = InputProps & {
+    name: string;
+    label?: string;
+    helperText?:string;
+    placeholder?: string;
+}
+
+export interface FieldTextType extends BasicInputType<InputTypes.TEXT, InputProps> {
     style?: string;
 }

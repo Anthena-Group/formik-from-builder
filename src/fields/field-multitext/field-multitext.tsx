@@ -1,22 +1,22 @@
-import React from "react";
-import TextField, { TextFieldProps } from '@mui/material/TextField'
+import React from 'react';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Textarea from '@mui/joy/Textarea';
 import { useField } from "formik";
+import { FieldMultiTextProps } from "../../types";
+import { HelperText } from '../common';
 
-
-type FieldMultiTextProps = TextFieldProps & {
-    name: string;
-}
-
-export const FieldMultiText: React.FC<FieldMultiTextProps> = ({ name, ...props }) => {
+export const FieldMultiText: React.FC<FieldMultiTextProps> = ({ name, label, placeholder, helperText, ...props }) => {
     const [field, meta] = useField(name);
 
     return (
-        <TextField
-            multiline
-            {...field} 
-            {...props}
-            error={Boolean(meta.touched && meta.error)} // Show error if touched and there's an error
-            helperText={meta.touched && meta.error ? meta.error : undefined} // Show error message if touched and there's an error
-        />
+        <FormControl>
+            <FormLabel>{label}</FormLabel>
+            <Textarea variant="soft" placeholder={placeholder} minRows={4}
+                {...props} {...field} />
+            <HelperText error={meta.touched && meta.error}
+                helperText={helperText} errorText={meta.error}/>
+        </FormControl>
+
     )
 }

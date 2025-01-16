@@ -7,9 +7,8 @@ export const useFormBuilder = (fields: FieldType[]) => {
   const initailValues: FormikValues = {};
 
   fields.forEach((field) => {
-
     let validator:any;
-
+    
     switch(field.type) {
         case InputTypes.CHECKBOX:
             validator = Yup.array();
