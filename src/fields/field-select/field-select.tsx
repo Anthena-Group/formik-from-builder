@@ -8,7 +8,7 @@ import { FieldSelectProps } from '../../types';
 import FormLabel from '@mui/joy/FormLabel';
 import { HelperText } from '../common';
 
-export const FieldSelect: React.FC<FieldSelectProps> = ({ name, label, helperText,
+export const FieldSelect: React.FC<FieldSelectProps> = ({ name, label, placeholder, helperText,
     options, ...props }) => {
     const [field, meta, helpers] = useField(name);
 
@@ -17,7 +17,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({ name, label, helperTex
             <FormLabel component="legend">{label}</FormLabel>
             <Select
                 id={name}
-                placeholder="Select a pet…"
+                placeholder={placeholder}
                 indicator={<KeyboardArrowDown />}
                 multiple={false}
                 variant='soft'

@@ -1,3 +1,4 @@
+export * from "./common";
 export * from "./field-text";
 export * from "./field-multitext";
 export * from "./field-checkbox";

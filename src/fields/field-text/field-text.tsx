@@ -17,7 +17,7 @@ export const FieldText: React.FC<FieldTextProps> = ({ name, label, placeholder, 
                 </Tooltip> */}
             </FormLabel>
             <Input
-                variant="outlined"
+                variant="soft"
                 placeholder={placeholder}
                 {...props} {...field}
             />

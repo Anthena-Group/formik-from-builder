@@ -1,0 +1,38 @@
+import React from "react";
+import { DynamicFieldrendererProps, InputTypes } from "../../../types";
+import { FieldText } from "../../field-text";
+import { FieldCheckBox } from "../../field-checkbox";
+import { FieldAutoComplete } from "../../field-autocomplete";
+import { FieldRadio } from "../../field-radio";
+import { FieldSelect } from "../../field-select";
+import { FieldMultiText } from "../../field-multitext";
+
+export const DynamicFieldRenderer: React.FC<DynamicFieldrendererProps> = ({ name, field, index }) => {
+    const fieldName = `${field.field}`;
+    const fieldKey = `${name}-${field.field}-${index}`;
+    switch (field.type) {
+        case InputTypes.TEXT:
+            return <FieldText key={fieldKey} name={fieldName} label={field.label}
+                placeholder={field.placeholder} helperText={field.helperText} {...field.muiProps} />;
+        case InputTypes.CHECKBOX:
+            return <FieldCheckBox key={fieldKey} name={fieldName} options={field.options} direction={field.direction}
+                helperText={field.helperText} groupLabel={field.groupLabel} {...field.muiProps} />;
+        case InputTypes.AUTO_COMPLETE:
+            return <FieldAutoComplete key={fieldKey} name={fieldName} options={field.options}
+                label={field.label} {...field.muiProps}
+            />;
+        case InputTypes.RADIO:
+            return <FieldRadio key={fieldKey} name={fieldName}
+                groupLabel={field.groupLabel} {...field.muiProps} options={field.options}
+                direction={field.direction} />;
+        case InputTypes.SELECT:
+            return <FieldSelect key={fieldKey} name={fieldName}
+                label={field.label} helperText={field.helperText} options={field.options} {...field.muiProps} />;
+        case InputTypes.MULTI_TEXT:
+            return <FieldMultiText key={fieldKey} name={fieldName}
+                placeholder={field.placeholder} helperText={field.helperText}
+                label={field.label} {...field.muiProps} />;
+        default:
+            return <></>;
+    }
+}

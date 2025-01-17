@@ -1,3 +1,4 @@
+import { GridProps } from "@mui/joy/Grid";
 import { ValidationRule } from "./validation-rule";
 
 export interface CommonInputTypes {
@@ -14,5 +15,6 @@ export interface BasicInputType<T, P> extends CommonInputTypes {
   field: string;
   initialValue?: string | number | boolean | string[] | number[] | boolean[];
   validation?: ValidationRule;
-  muiProps?: P
+  muiProps?: P;
+  gridProps? : GridProps;
 }

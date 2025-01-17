@@ -1,7 +1,8 @@
 export * from "./input-types";
 export * from "./basic-input-type";
 export * from "./validation-rule";
-
+export * from "./dynamic-field-renderer-type";
+export * from "./form-builder-type";
 export * from "./field-type";
 export * from "./field-text-type";
 export * from "./field-multitext-type";

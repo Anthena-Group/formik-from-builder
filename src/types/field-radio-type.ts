@@ -9,9 +9,11 @@ export type FieldRadioProps = RadioProps & {
     groupLabel?: string;
     helperText?: string;
     options: OptionType[];
+    direction?: "row" | "column";
 };
 
 export interface FieldRadioType
   extends BasicInputType<InputTypes.RADIO, RadioProps> {
     options: OptionType[];
+    direction?: "row" | "column";
 }

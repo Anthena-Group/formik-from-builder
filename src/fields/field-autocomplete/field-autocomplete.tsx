@@ -6,8 +6,10 @@ import FormLabel from '@mui/joy/FormLabel';
 import { FieldAutoCompleteProps } from '../../types';
 import { HelperText } from '../common';
 
-export const FieldAutoComplete: React.FC<FieldAutoCompleteProps> = ({ name, label, placeholder, helperText, options, ...props }) => {
+export const FieldAutoComplete: React.FC<FieldAutoCompleteProps> = ({ name, label, placeholder,
+    helperText, options, ...props }) => {
     const [field, meta, helpers] = useField(name);
+    
     return (
         <FormControl error={Boolean(meta.touched && meta.error)}>
             <FormLabel component="legend">{label}</FormLabel>

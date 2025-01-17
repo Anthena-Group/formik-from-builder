@@ -8,9 +8,8 @@ import { HelperText } from '../common';
 
 export const FieldMultiText: React.FC<FieldMultiTextProps> = ({ name, label, placeholder, helperText, ...props }) => {
     const [field, meta] = useField(name);
-
     return (
-        <FormControl>
+        <FormControl error={Boolean(meta.touched && meta.error)}>
             <FormLabel>{label}</FormLabel>
             <Textarea variant="soft" placeholder={placeholder} minRows={4}
                 {...props} {...field} />

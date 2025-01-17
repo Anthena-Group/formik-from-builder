@@ -1,7 +1,13 @@
 export type ValidationRule = {
   required?: boolean;
-  message?:string;
+  message?: string;
+
   minLength?: number;
+  minLengthRuleMsg?: string;
+
   maxLength?: number;
+  maxLengthRuleMsg?: string;
+
   pattern?: RegExp;
+  patternRuleMsg?: string;
 };
