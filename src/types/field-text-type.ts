@@ -9,6 +9,7 @@ export type FieldTextProps = InputProps & {
     label?: string;
     helperText?:string;
     placeholder?: string;
+    required?: boolean;
 }
 
 export interface FieldTextType extends BasicInputType<InputTypes.TEXT, InputProps> {

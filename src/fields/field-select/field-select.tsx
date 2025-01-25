@@ -8,13 +8,15 @@ import { FieldSelectProps } from '../../types';
 import FormLabel from '@mui/joy/FormLabel';
 import { HelperText } from '../common';
 
-export const FieldSelect: React.FC<FieldSelectProps> = ({ name, label, placeholder, helperText,
+export const FieldSelect: React.FC<FieldSelectProps> = ({ name, required, label, placeholder, helperText,
     options, ...props }) => {
     const [field, meta, helpers] = useField(name);
 
     return (
         <FormControl error={Boolean(meta.touched && meta.error)}>
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel component="legend">{label}
+                {required && <span style={{ color: 'red' }}>*</span>}
+            </FormLabel>
             <Select
                 id={name}
                 placeholder={placeholder}

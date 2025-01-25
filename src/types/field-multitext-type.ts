@@ -7,6 +7,7 @@ export type FieldMultiTextProps = TextareaProps & {
   label?: string;
   placeholder?: string;
   helperText?: string;
+  required?: boolean;
 };
 
 export interface FieldMultiTextType

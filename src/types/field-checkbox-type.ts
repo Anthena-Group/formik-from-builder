@@ -9,6 +9,7 @@ export type FieldCheckBoxProps = CheckboxProps & {
     helperText?: string;
     groupLabel?: string;
     direction?: "row" | "column";
+    required?: boolean;
 };
 
 export interface FieldCheckboxType extends BasicInputType<InputTypes.CHECKBOX, CheckboxProps> {

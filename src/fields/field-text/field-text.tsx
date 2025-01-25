@@ -7,11 +7,13 @@ import { useField } from "formik";
 import { FieldTextProps } from "../../types";
 import { HelperText } from '../common';
 
-export const FieldText: React.FC<FieldTextProps> = ({ name, label, placeholder, helperText, ...props }) => {
+export const FieldText: React.FC<FieldTextProps> = ({ name, required, label, placeholder, helperText, ...props }) => {
     const [field, meta] = useField(name);
     return (
         <FormControl error={Boolean(meta.touched && meta.error)}>
             <FormLabel>{label}
+                {required && <span style={{ color: 'red' }}>*</span>}
+
                 {/* <Tooltip title={label} variant="solid">
                     <InfoOutlined sx={{ width: "16px", marginRight: "7px" }} />
                 </Tooltip> */}

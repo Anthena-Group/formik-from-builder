@@ -1,13 +1,13 @@
-import React from 'react';
 import Checkbox from '@mui/joy/Checkbox';
-import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Grid from '@mui/joy/Grid';
 import { useField } from 'formik';
+import React from 'react';
 import { FieldCheckBoxProps } from '../../types';
 import { HelperText } from '../common';
 
-export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, helperText, options, direction = "row", ...props }) => {
+export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, helperText,
+    options, required, direction = "row", ...props }) => {
     const [field, meta, helpers] = useField(name);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,8 +19,10 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
     };
 
     return (
-        <FormControl error={Boolean(meta.touched && meta.error)}>
-            <FormLabel component="legend">{groupLabel}</FormLabel>
+        <Grid>
+            <FormLabel component="legend">{groupLabel}
+                {(groupLabel && required) && <span style={{ color: 'red' }}>*</span>}
+            </FormLabel>
             <Grid container xs={12} spacing={2} direction={direction} sx={{ flexGrow: 1 }}>
                 {options?.map((option) => (
                     <Grid key={option.value} xs={12} sm={"auto"} md={"auto"}>
@@ -40,6 +42,6 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
             </Grid>
             <HelperText error={meta.touched && meta.error}
                 helperText={helperText} errorText={meta.error} />
-        </FormControl>
+        </Grid>
     );
 };

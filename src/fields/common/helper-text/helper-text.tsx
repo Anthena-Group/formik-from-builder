@@ -3,6 +3,8 @@ import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import ErrorIcon from '@mui/icons-material/Error';
 import Box from "@mui/joy/Box";
 import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import FormHelperText from '@mui/joy/FormHelperText';
 
 interface HelperTextProps {
@@ -25,10 +27,10 @@ export const HelperText: React.FC<HelperTextProps> = ({ error, helperText,
                 alignItems: "center",
             }}>
                 {error ? (
-                    <>
-                        <ErrorIcon sx={{ width: "18px", marginRight: "7px" }} />
-                        {errorText}
-                    </>
+                    <Stack flexDirection={"row"} alignItems={"center"}>
+                        <ErrorIcon color="error" sx={{ width: "18px", marginRight: "7px" }} />
+                        <Typography level="body-xs" color="danger">{errorText}</Typography>
+                    </Stack>
                 ) : (helperText &&
                     <>
                         <InfoOutlined sx={{ width: "18px", marginRight: "7px" }} />

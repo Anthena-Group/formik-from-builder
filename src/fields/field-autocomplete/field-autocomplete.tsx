@@ -7,12 +7,14 @@ import { FieldAutoCompleteProps } from '../../types';
 import { HelperText } from '../common';
 
 export const FieldAutoComplete: React.FC<FieldAutoCompleteProps> = ({ name, label, placeholder,
-    helperText, options, ...props }) => {
+    helperText, options, required, ...props }) => {
     const [field, meta, helpers] = useField(name);
-    
+
     return (
         <FormControl error={Boolean(meta.touched && meta.error)}>
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel component="legend">{label}
+                {required && <span style={{ color: 'red' }}>*</span>}
+            </FormLabel>
             <Autocomplete
                 placeholder={placeholder}
                 options={options}

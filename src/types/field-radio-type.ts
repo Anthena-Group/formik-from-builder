@@ -10,6 +10,7 @@ export type FieldRadioProps = RadioProps & {
     helperText?: string;
     options: OptionType[];
     direction?: "row" | "column";
+    required?: boolean;
 };
 
 export interface FieldRadioType

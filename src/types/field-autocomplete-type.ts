@@ -13,6 +13,7 @@ export type FieldAutoCompleteProps = Omit<
   helperText?: string;
   placeholder?:string;
   options: OptionType[];
+  required?: boolean;
 };
 
 export interface FieldAutoCompleteType
