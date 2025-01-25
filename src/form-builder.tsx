@@ -12,7 +12,7 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({ group, fields,
             {...gridProps}
             data-test={dataTestId}>
             {fields.map((field, index) =>
-                <Grid xs={12} key={field.field} {...field.gridProps}>
+                <Grid data-test={`form-item-${field.field}`}  xs={12} key={field.field} {...field.gridProps}>
                     <DynamicFieldRenderer field={field} index={index} name={group} />
                 </Grid>
             )}

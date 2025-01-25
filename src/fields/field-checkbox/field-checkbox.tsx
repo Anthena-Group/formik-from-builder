@@ -19,14 +19,17 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
     };
 
     return (
-        <Grid>
-            <FormLabel component="legend">{groupLabel}
+        <Grid data-test={`check-box-group-${name}`}>
+            <FormLabel component="legend" data-test={`form-control-label-${name}`}>{groupLabel}
                 {(groupLabel && required) && <span style={{ color: 'red' }}>*</span>}
             </FormLabel>
-            <Grid container xs={12} spacing={2} direction={direction} sx={{ flexGrow: 1 }}>
-                {options?.map((option) => (
-                    <Grid key={option.value} xs={12} sm={"auto"} md={"auto"}>
+            <Grid container data-test={`check-box-grid-box`}
+                xs={12} spacing={2} direction={direction} sx={{ flexGrow: 1 }}>
+                {options?.map((option, index) => (
+                    <Grid data-test={`check-box-grid-${index}`}
+                        key={`${option.label}-${index}`} xs={12} sm={"auto"} md={"auto"}>
                         <Checkbox
+                            data-test={`check-box-${name}`}
                             label={option.label}
                             value={option.value || []}
                             checked={field.value?.includes(option.value)}
@@ -36,12 +39,12 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
                         />
                         {option.description &&
                             (<HelperText error={false}
-                                helperText={option.description} errorText={""} />)}
+                                helperText={option.description} errorText={""} name={`no-${index + 1}`} />)}
                     </Grid>
                 ))}
             </Grid>
             <HelperText error={meta.touched && meta.error}
-                helperText={helperText} errorText={meta.error} />
+                helperText={helperText} errorText={meta.error} name={name} />
         </Grid>
     );
 };

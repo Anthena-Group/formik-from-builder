@@ -1,11 +1,11 @@
 import { BasicInputType } from './basic-input-type';
 import { InputTypes } from './input-types';
-import { OptionType } from './common-types';
+import { CheckboxOptionType } from './common-types';
 import { CheckboxProps } from '@mui/joy/Checkbox';
 
 export type FieldCheckBoxProps = CheckboxProps & {
     name: string;
-    options: OptionType[];
+    options: CheckboxOptionType[];
     helperText?: string;
     groupLabel?: string;
     direction?: "row" | "column";
@@ -13,6 +13,6 @@ export type FieldCheckBoxProps = CheckboxProps & {
 };
 
 export interface FieldCheckboxType extends BasicInputType<InputTypes.CHECKBOX, CheckboxProps> {
-    options: OptionType[];
+    options: CheckboxOptionType[];
     direction?: "row" | "column";
 }

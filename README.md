@@ -20,6 +20,8 @@ npm install formik-form-builder
 # Usage
 ## Here is a basic example of how to use the Formik Form Builder:
 
+Play with it [SANBOX](https://codesandbox.io/p/sandbox/formik-form-builder-exmaple-2552ys?file=%2Fsrc%2FApp.js)
+
 ```bash
 import React from 'react';
 import FormikFormBuilder from 'formik-form-builder';
@@ -30,13 +32,13 @@ const formDefinition = {
       name: 'firstName',
       label: 'First Name',
       type: 'text',
-      required: true,
+      validation: {required: true}
     },
     {
       name: 'lastName',
       label: 'Last Name',
       type: 'text',
-      required: true,
+      validation: {required: true}
     },
     // Add more fields as needed
   ],
