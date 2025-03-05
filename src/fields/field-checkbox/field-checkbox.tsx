@@ -7,7 +7,7 @@ import { FieldCheckBoxProps } from '../../types';
 import { HelperText } from '../common';
 
 export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, helperText,
-    options, required, direction = "row", ...props }) => {
+    options, required, direction = "row", actions, ...props }) => {
     const [field, meta, helpers] = useField(name);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +17,8 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
             : field.value?.filter((v: string) => v !== value);
         helpers.setValue(newValue);
     };
+
+    if(actions.hide) return null;
 
     return (
         <Grid data-test={`check-box-group-${name}`}>
@@ -33,6 +35,7 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
                             label={option.label}
                             value={option.value || []}
                             checked={field.value?.includes(option.value)}
+                            disabled={actions.disable || props.disabled}
                             onChange={handleChange}
                             variant='soft'
                             {...props}

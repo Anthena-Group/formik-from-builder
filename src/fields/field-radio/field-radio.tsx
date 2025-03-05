@@ -11,8 +11,10 @@ import Typography from '@mui/joy/Typography';
 
 
 export const FieldRadio: React.FC<FieldRadioProps> = ({ name, groupLabel,
-    helperText, direction = "row", required, options, ...props }) => {
+    helperText, direction = "row", required, options, actions, ...props }) => {
     const [field, meta] = useField(name);
+
+    if (actions.hide) return null;
 
     return (
         <FormControl error={Boolean(meta.touched && meta.error)}
@@ -34,6 +36,7 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ name, groupLabel,
                             key={`${option.label}-${index}`} xs={12} sm={"auto"} md={"auto"}>
                             <Radio data-test={`radio-${index + 1}`} label={option.label}
                                 value={option.value}
+                                disabled={actions.disable || props.disabled}
                                 variant="soft" {...props} />
                             {option.description &&
                                 (<HelperText error={false}

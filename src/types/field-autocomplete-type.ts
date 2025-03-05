@@ -1,6 +1,6 @@
 import { AutocompleteProps } from '@mui/joy/Autocomplete';
 import { BasicInputType } from './basic-input-type';
-import { OptionType } from './common-types';
+import { FieldConditionAction, OptionType } from './common-types';
 import { InputTypes } from './input-types';
 
 export type FieldAutoCompleteProps = Omit<
@@ -14,6 +14,7 @@ export type FieldAutoCompleteProps = Omit<
   placeholder?:string;
   options: OptionType[];
   required?: boolean;
+  actions: FieldConditionAction;
 };
 
 export interface FieldAutoCompleteType

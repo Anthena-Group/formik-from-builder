@@ -1,6 +1,7 @@
 import { TextareaProps } from '@mui/joy/Textarea';
 import { BasicInputType } from './basic-input-type';
 import { InputTypes } from './input-types';
+import { FieldConditionAction } from './common-types';
 
 export type FieldMultiTextProps = TextareaProps & {
   name: string;
@@ -8,6 +9,7 @@ export type FieldMultiTextProps = TextareaProps & {
   placeholder?: string;
   helperText?: string;
   required?: boolean;
+  actions: FieldConditionAction;
 };
 
 export interface FieldMultiTextType

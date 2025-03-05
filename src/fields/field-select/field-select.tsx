@@ -10,8 +10,10 @@ import FormLabel from '@mui/joy/FormLabel';
 import { HelperText } from '../common';
 
 export const FieldSelect: React.FC<FieldSelectProps> = ({ name, required, label, placeholder, helperText,
-    options, ...props }) => {
+    options, actions, ...props }) => {
     const [field, meta, helpers] = useField(name);
+
+    if(actions.hide) return null;
 
     return (
         <FormControl error={Boolean(meta.touched && meta.error)} data-test={`form-control-group-${name}`}>
@@ -24,6 +26,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({ name, required, label,
                 placeholder={placeholder}
                 indicator={<KeyboardArrowDown />}
                 multiple={false}
+                disabled={actions.disable || props.disabled}
                 variant='soft'
                 sx={{
                     [`& .${selectClasses.indicator}`]: {

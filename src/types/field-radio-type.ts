@@ -1,7 +1,7 @@
 import { RadioProps } from '@mui/joy/Radio';
 import { BasicInputType } from './basic-input-type';
 import { InputTypes } from './input-types';
-import { OptionType } from './common-types';
+import { FieldConditionAction, OptionType } from './common-types';
 
 
 export type FieldRadioProps = RadioProps & {
@@ -11,6 +11,7 @@ export type FieldRadioProps = RadioProps & {
     options: OptionType[];
     direction?: "row" | "column";
     required?: boolean;
+    actions: FieldConditionAction;
 };
 
 export interface FieldRadioType

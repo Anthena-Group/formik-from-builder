@@ -8,8 +8,12 @@ import { FieldTextProps } from "../../types";
 import { HelperText } from '../common';
 import Typography from '@mui/joy/Typography';
 
-export const FieldText: React.FC<FieldTextProps> = ({ name, required, label, placeholder, helperText, ...props }) => {
+export const FieldText: React.FC<FieldTextProps> = ({ name, required, label, placeholder, actions,
+    helperText, ...props }) => {
     const [field, meta] = useField(name);
+
+    if(actions.hide) return null;
+
     return (
         <FormControl error={Boolean(meta.touched && meta.error)}
             data-test={`form-control-${name}`} >
@@ -20,14 +24,16 @@ export const FieldText: React.FC<FieldTextProps> = ({ name, required, label, pla
                     <InfoOutlined sx={{ width: "16px", marginRight: "7px" }} />
                 </Tooltip> */}
             </FormLabel>
-            <Input
-                data-test={`input-${name}`} 
-                variant="soft"
-                placeholder={placeholder}
-                {...props} {...field}
-            />
+                <Input
+                    data-test={`input-${name}`}
+                    variant="soft"
+                    placeholder={placeholder}
+                    disabled={actions.disable || props.disabled}
+                    {...props}
+                    {...field}
+                />
             <HelperText error={meta.touched && meta.error} helperText={helperText}
-             errorText={meta.error} name={name}/>
+                errorText={meta.error} name={name} />
         </FormControl>
     )
 }

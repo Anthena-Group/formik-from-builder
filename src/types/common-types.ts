@@ -7,3 +7,9 @@ export type OptionType = {
 export type CheckboxOptionType = OptionType & {
   value: string;
 };
+
+
+export type FieldConditionAction = {
+  hide: boolean;
+  disable: boolean;
+}

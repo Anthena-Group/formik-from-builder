@@ -10,4 +10,7 @@ export type ValidationRule = {
 
   pattern?: RegExp;
   patternRuleMsg?: string;
+
+  isPositive?: boolean;
+  isPositiveRuleMsg?: string;
 };

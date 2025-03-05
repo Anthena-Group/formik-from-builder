@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { FormikValues } from 'formik';
 import * as Yup from 'yup';
 import { FieldType, InputTypes } from '../types';
-import { FormikValues } from 'formik';
 
 const assignObjectFields = (
   fieldsValString: string,
@@ -21,17 +21,27 @@ const assignObjectFields = (
   return result;
 };
 
-
 export const useFormBuilder = (fields: FieldType[]) => {
   const schemaFields: Record<string, any> = {};
   const initailValues: FormikValues = {};
-
   const nestedFields: { [key: string]: string } = {};
+
   fields.forEach((field) => {
     let validator: any;
     switch (field.type) {
       case InputTypes.CHECKBOX:
         validator = Yup.array();
+        break;
+      case InputTypes.TEXT:
+        if (field.muiProps?.type === 'number') {
+          validator = Yup.number();
+        } else if (field.muiProps?.type === 'date') {
+          validator = Yup.date();
+        } else if (field.muiProps?.type === 'email') {
+          validator = Yup.string().email();
+        } else {
+          validator = Yup.string();
+        }
         break;
       default:
         validator = Yup.string();
@@ -49,6 +59,14 @@ export const useFormBuilder = (fields: FieldType[]) => {
         field.validation.minLength,
         field.validation.minLengthRuleMsg ||
           `Minimum length is ${field.validation.minLength}` ||
+          field.validation.message
+      );
+    }
+
+    if (field.validation?.isPositive) {
+      validator = validator.positive(
+        field.validation.isPositiveRuleMsg ||
+          `Value must be a positive number.` ||
           field.validation.message
       );
     }
@@ -81,6 +99,7 @@ export const useFormBuilder = (fields: FieldType[]) => {
     }
   });
 
+  //TODO: Deep nested fields are not supported yet
   Object.keys(nestedFields).forEach((f) => {
     schemaFields[f] = Yup.object().shape({ ...schemaFields[f] });
   });
