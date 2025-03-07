@@ -67,6 +67,27 @@ export const evaluateCondition = (
       return (
         fieldValue !== '' && fieldValue !== null && fieldValue !== undefined
       );
+    // Array-specific conditions
+    case ConditionName.INCLUDES:
+      return (
+        Array.isArray(fieldValue) &&
+        fieldValue.includes(logic.value)
+      );
+    case ConditionName.NOT_INCLUDES:
+      return (
+        Array.isArray(fieldValue) &&
+        logic.value !== undefined &&
+        !fieldValue.includes(logic.value)
+      );
+    case ConditionName.ARRAY_EQUALS:
+      return (
+        logic.value !== null &&
+        logic.value !== undefined &&
+        Array.isArray(fieldValue) &&
+        Array.isArray(logic.value) &&
+        fieldValue.length === logic.value.length &&
+        fieldValue.every((val, index) => val === (Array.isArray(logic.value) && logic.value[index]))
+      );
     default:
       return false;
   }

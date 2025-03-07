@@ -26,20 +26,21 @@ export const DynamicFieldRenderer: React.FC<DynamicFieldrendererProps> =
             case InputTypes.AUTO_COMPLETE:
                 return <FieldAutoComplete key={fieldKey} name={fieldName}
                     options={field.options} required={field?.validation?.required || false}
+                    helperText={field.helperText}
                     label={field.label} {...field.muiProps} actions={fieldConditionActions} />;
             case InputTypes.RADIO:
                 return <FieldRadio key={fieldKey} name={fieldName}
                     groupLabel={field.groupLabel} {...field.muiProps}
                     options={field.options} required={field?.validation?.required || false}
-                    direction={field.direction}  actions={fieldConditionActions}/>;
+                    direction={field.direction} actions={fieldConditionActions} />;
             case InputTypes.SELECT:
                 return <FieldSelect key={fieldKey} name={fieldName}
                     label={field.label} helperText={field.helperText}
                     options={field.options} {...field.muiProps} actions={fieldConditionActions}
                     required={field?.validation?.required || false} />;
             case InputTypes.MULTI_TEXT:
-                return <FieldMultiText key={fieldKey} name={fieldName} 
-                required={field?.validation?.required || false} actions={fieldConditionActions}
+                return <FieldMultiText key={fieldKey} name={fieldName}
+                    required={field?.validation?.required || false} actions={fieldConditionActions}
                     placeholder={field.placeholder} helperText={field.helperText}
                     label={field.label} {...field.muiProps} />;
             default:

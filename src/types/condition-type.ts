@@ -11,6 +11,9 @@ export enum ConditionName {
   ENDS_WITH = 'ENDS_WITH',
   IS_EMPTY = 'IS_EMPTY',
   IS_NOT_EMPTY = 'IS_NOT_EMPTY',
+  INCLUDES = 'INCLUDES',
+  NOT_INCLUDES = 'NOT_INCLUDES',
+  ARRAY_EQUALS = 'ARRAY_EQUALS',
 }
 
 export enum PostCondition {
@@ -22,7 +25,7 @@ export type ConditionValue = string | boolean | number | undefined | null;
 
 export interface ConditionLogic {
   field: string; // The field to evaluate
-  value: ConditionValue; // The value to compare against
+  value: ConditionValue | ConditionValue[]; // The value to compare against
   condition: ConditionName; // The condition to apply
   postCondition: PostCondition; // Logical operator for combining conditions
 }
