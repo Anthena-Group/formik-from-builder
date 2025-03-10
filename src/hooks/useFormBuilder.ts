@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FormikValues } from 'formik';
 import * as Yup from 'yup';
-import { FieldType, InputTypes } from '../types';
+import { CHECK_BOX_VALUE_TYPE, FieldType, InputTypes } from '../types';
 
 const assignObjectFields = (
   fieldsValString: string,
@@ -30,7 +30,13 @@ export const useFormBuilder = (fields: FieldType[]) => {
     let validator: any;
     switch (field.type) {
       case InputTypes.CHECKBOX:
-        validator = Yup.array();
+        if (field.valueType === CHECK_BOX_VALUE_TYPE.STRING) {
+          validator = Yup.string();
+        } else if (field.valueType === CHECK_BOX_VALUE_TYPE.BOOLEAN) {
+          validator = Yup.boolean();
+        } else {
+          validator = Yup.array();
+        }
         break;
       case InputTypes.TEXT:
         if (field.muiProps?.type === 'number') {

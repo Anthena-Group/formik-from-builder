@@ -13,8 +13,15 @@ export type FieldCheckBoxProps = CheckboxProps & {
   actions: FieldConditionAction;
 };
 
+export enum CHECK_BOX_VALUE_TYPE {
+  ARRAY = 'array',
+  STRING = 'string',
+  BOOLEAN = 'boolean'
+}
+
 export interface FieldCheckboxType
   extends BasicInputType<InputTypes.CHECKBOX, CheckboxProps> {
   options: CheckboxOptionType[];
   direction?: 'row' | 'column';
+  valueType?: CHECK_BOX_VALUE_TYPE;
 }

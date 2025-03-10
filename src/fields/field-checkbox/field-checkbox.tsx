@@ -12,13 +12,26 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, checked } = event.target;
-        const newValue = checked
-            ? (field.value && field.value?.length > 0) ? [...field.value, value] : [value]
-            : field.value?.filter((v: string) => v !== value);
-        helpers.setValue(newValue);
+        let newValue: string | string[];
+    
+        if (checked) {
+            if(options.length === 1) { 
+                newValue = value;
+            } else {
+                newValue = [...(field.value || []), value];
+            }
+        } else {
+            if(options.length === 1) {
+                newValue = '';
+            } else {
+                newValue = (field.value || []).filter((v: string) => v !== value);
+            }
+        }
+    
+        helpers.setValue(newValue); // Set the new value
     };
 
-    if(actions.hide) return null;
+    if (actions.hide) return null;
 
     return (
         <Grid data-test={`check-box-group-${name}`}>
@@ -33,8 +46,9 @@ export const FieldCheckBox: React.FC<FieldCheckBoxProps> = ({ name, groupLabel, 
                         <Checkbox
                             data-test={`check-box-${name}`}
                             label={option.label}
-                            value={option.value || []}
-                            checked={field.value?.includes(option.value)}
+                            value={option.value}
+                            checked={Array.isArray(field.value) ?
+                                field.value?.includes(option.value) : field.value === option.value}
                             disabled={actions.disable || props.disabled}
                             onChange={handleChange}
                             variant='soft'
