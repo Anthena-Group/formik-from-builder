@@ -32,6 +32,7 @@ export const DynamicFieldRenderer: React.FC<DynamicFieldrendererProps> =
                 return <FieldRadio key={fieldKey} name={fieldName}
                     groupLabel={field.groupLabel} {...field.muiProps}
                     options={field.options} required={field?.validation?.required || false}
+                    helperText={field.helperText}
                     direction={field.direction} actions={fieldConditionActions} />;
             case InputTypes.SELECT:
                 return <FieldSelect key={fieldKey} name={fieldName}

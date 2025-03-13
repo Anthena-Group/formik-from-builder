@@ -97,7 +97,7 @@ export const useFieldConditions = (
         {}
       );
       setFieldConditions(newConditions);
-    }, 700); // Adjust debounce delay as needed
+    }, 100); // Adjust debounce delay as needed
 
     return () => clearTimeout(debounceTimeout); // Cleanup timeout on unmount or re-run
   }, [values]);
