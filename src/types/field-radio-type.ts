@@ -18,4 +18,5 @@ export interface FieldRadioType
   extends BasicInputType<InputTypes.RADIO, RadioProps> {
     options: OptionType[];
     direction?: "row" | "column";
+    variant?: "DEFAULT" | "ICON";
 }

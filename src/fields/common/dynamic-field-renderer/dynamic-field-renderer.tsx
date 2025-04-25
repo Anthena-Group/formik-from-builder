@@ -3,7 +3,7 @@ import { DynamicFieldrendererProps, InputTypes } from "../../../types";
 import { FieldText } from "../../field-text";
 import { FieldCheckBox } from "../../field-checkbox";
 import { FieldAutoComplete } from "../../field-autocomplete";
-import { FieldRadio } from "../../field-radio";
+import { FieldRadio, FieldRadioIconVariant } from "../../field-radio";
 import { FieldSelect } from "../../field-select";
 import { FieldMultiText } from "../../field-multitext";
 
@@ -29,11 +29,20 @@ export const DynamicFieldRenderer: React.FC<DynamicFieldrendererProps> =
                     helperText={field.helperText}
                     label={field.label} {...field.muiProps} actions={fieldConditionActions} />;
             case InputTypes.RADIO:
-                return <FieldRadio key={fieldKey} name={fieldName}
-                    groupLabel={field.groupLabel} {...field.muiProps}
-                    options={field.options} required={field?.validation?.required || false}
-                    helperText={field.helperText}
-                    direction={field.direction} actions={fieldConditionActions} />;
+                switch (field?.variant) {
+                    case "ICON":
+                        return <FieldRadioIconVariant key={fieldKey} name={fieldName}
+                            groupLabel={field.groupLabel} {...field.muiProps}
+                            options={field.options} required={field?.validation?.required || false}
+                            helperText={field.helperText}
+                            direction={field.direction} actions={fieldConditionActions} />
+                    default:
+                        return <FieldRadio key={fieldKey} name={fieldName}
+                            groupLabel={field.groupLabel} {...field.muiProps}
+                            options={field.options} required={field?.validation?.required || false}
+                            helperText={field.helperText}
+                            direction={field.direction} actions={fieldConditionActions} />
+                }
             case InputTypes.SELECT:
                 return <FieldSelect key={fieldKey} name={fieldName}
                     label={field.label} helperText={field.helperText}

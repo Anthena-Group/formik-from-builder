@@ -69,10 +69,37 @@ export const useFormBuilder = (fields: FieldType[]) => {
       );
     }
 
+    if (field.validation?.minValue) {
+      validator = validator.min(
+        field.validation.minValue,
+        field.validation.minValueRuleMsg ||
+          `Minimum value is ${field.validation.minValue}` ||
+          field.validation.message
+      );
+    }
+
     if (field.validation?.isPositive) {
       validator = validator.positive(
         field.validation.isPositiveRuleMsg ||
           `Value must be a positive number.` ||
+          field.validation.message
+      );
+    }
+
+    if (field.validation?.moreThan) {
+      validator = validator.transform(Number).moreThan(
+        field.validation.moreThan,
+        field.validation.moreThanRuleMsg ||
+          `Should be more than ${field.validation.moreThan}` ||
+          field.validation.message
+      );
+    }
+
+    if (field.validation?.lessThan) {
+      validator = validator.lessThan(
+        field.validation.lessThan,
+        field.validation.lessThanRuleMsg ||
+          `Should be less than ${field.validation.lessThan}` ||
           field.validation.message
       );
     }
@@ -82,6 +109,15 @@ export const useFormBuilder = (fields: FieldType[]) => {
         field.validation.maxLength,
         field.validation.maxLengthRuleMsg ||
           `Maximum length is ${field.validation.maxLength}` ||
+          field.validation.message
+      );
+    }
+
+    if (field.validation?.maxValue) {
+      validator = validator.max(
+        field.validation.maxValue,
+        field.validation.maxValueRuleMsg ||
+          `Maximum value is ${field.validation.maxValue}` ||
           field.validation.message
       );
     }

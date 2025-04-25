@@ -1,6 +1,6 @@
 {
   "name": "formik-from-builder",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Leverage Formik-Form-Builder Creator to effortlessly construct MUI-based forms using concise JSON definitions.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
