@@ -9,6 +9,7 @@ export type FieldRadioProps = RadioProps & {
     groupLabel?: string;
     helperText?: string;
     options: OptionType[];
+    outputType?: "string" | "number" | "boolean";
     direction?: "row" | "column";
     required?: boolean;
     actions: FieldConditionAction;

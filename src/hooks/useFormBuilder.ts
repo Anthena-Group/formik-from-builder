@@ -131,6 +131,10 @@ export const useFormBuilder = (fields: FieldType[]) => {
       );
     }
 
+    if(field?.validation?.yupCustomValidation) {
+      validator = validator.test(field?.validation?.yupCustomValidation)
+    }
+
     if (field.field.split('.').length > 1) {
       nestedFields[field.field.split('.')[0]] = 'val';
       assignObjectFields(field.field, validator, schemaFields);

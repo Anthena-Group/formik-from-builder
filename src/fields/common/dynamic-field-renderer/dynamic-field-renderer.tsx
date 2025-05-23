@@ -33,14 +33,18 @@ export const DynamicFieldRenderer: React.FC<DynamicFieldrendererProps> =
                     case "ICON":
                         return <FieldRadioIconVariant key={fieldKey} name={fieldName}
                             groupLabel={field.groupLabel} {...field.muiProps}
-                            options={field.options} required={field?.validation?.required || false}
+                            options={field.options}
+                            required={field?.validation?.required || false}
                             helperText={field.helperText}
+                            outputType={field.outputType}
                             direction={field.direction} actions={fieldConditionActions} />
                     default:
                         return <FieldRadio key={fieldKey} name={fieldName}
                             groupLabel={field.groupLabel} {...field.muiProps}
-                            options={field.options} required={field?.validation?.required || false}
+                            options={field.options}
+                            required={field?.validation?.required || false}
                             helperText={field.helperText}
+                            outputType={field.outputType}
                             direction={field.direction} actions={fieldConditionActions} />
                 }
             case InputTypes.SELECT:

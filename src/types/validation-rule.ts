@@ -1,3 +1,6 @@
+import * as Yup from 'yup';
+
+
 export type ValidationRule = {
   required?: boolean;
   message?: string;
@@ -25,4 +28,16 @@ export type ValidationRule = {
 
   lessThan?: number;
   lessThanRuleMsg?: string;
+
+  yupCustomValidation?: Yup.TestConfig<
+  | string
+  | number
+  | boolean
+  | string[]
+  | number[]
+  | boolean[]
+  | undefined
+  | null,
+  Yup.StringSchema | Yup.NumberSchema | Yup.BooleanSchema | Yup.BooleanSchema | any
+>;
 };

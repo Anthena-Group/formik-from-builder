@@ -1,12 +1,12 @@
-import { GridProps } from "@mui/joy/Grid";
-import { ValidationRule } from "./validation-rule";
-import { ConditionType } from "./condition-type";
+import { GridProps } from '@mui/joy/Grid';
+import { ValidationRule } from './validation-rule';
+import { ConditionType } from './condition-type';
 
 export interface CommonInputTypes {
   label?: string;
   groupLabel?: string;
-  placeholder?:string;
-  helperText?:string;
+  placeholder?: string;
+  helperText?: string;
 }
 
 export interface BasicInputType<T, P> extends CommonInputTypes {
@@ -16,7 +16,8 @@ export interface BasicInputType<T, P> extends CommonInputTypes {
   field: string;
   initialValue?: string | number | boolean | string[] | number[] | boolean[];
   validation?: ValidationRule;
+  outputType?: "string" | "number" | "boolean";
   muiProps?: P;
-  gridProps? : GridProps;
+  gridProps?: GridProps;
   conditions?: ConditionType;
 }

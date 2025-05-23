@@ -10,11 +10,20 @@ import { HelperText } from '../common';
 import Typography from '@mui/joy/Typography';
 
 
-export const FieldRadio: React.FC<FieldRadioProps> = ({ name, groupLabel,
+export const FieldRadio: React.FC<FieldRadioProps> = ({ name, groupLabel, outputType,
     helperText, direction = "row", required, options, actions, ...props }) => {
-    const [field, meta] = useField(name);
+    const [field, meta, helpers] = useField(name);
 
     if (actions.hide) return null;
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (outputType && outputType === "boolean") {
+            const val = event.target.value;
+            helpers.setValue(val === "true");
+        } else {
+            field.onChange(event);
+        }
+    }
 
     return (
         <FormControl error={Boolean(meta.touched && meta.error)}
@@ -26,7 +35,7 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ name, groupLabel,
                 data-test={`radio-group-${name}`}
                 name={name}
                 value={field.value}
-                onChange={field.onChange}
+                onChange={handleChange}
                 sx={{ gap: 1 }}
             >
                 <Grid container xs={12} spacing={2} direction={direction}

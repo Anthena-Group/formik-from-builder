@@ -13,9 +13,18 @@ import Avatar from '@mui/joy/Avatar';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 
-export const FieldRadioIconVariant: React.FC<FieldRadioProps> = ({ name, groupLabel,
+export const FieldRadioIconVariant: React.FC<FieldRadioProps> = ({ name, groupLabel, outputType,
   helperText, direction = "row", required, options, actions, ...props }) => {
-  const [field, meta] = useField(name);
+  const [field, meta, helpers] = useField(name);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (outputType && outputType === "boolean") {
+      const val = event.target.value;
+      helpers.setValue(val === "true");
+    } else {
+      field.onChange(event);
+    }
+  }
 
   if (actions.hide) return null;
 
@@ -30,7 +39,7 @@ export const FieldRadioIconVariant: React.FC<FieldRadioProps> = ({ name, groupLa
         name={name}
         overlay
         value={field.value}
-        onChange={field.onChange}
+        onChange={handleChange}
         sx={{
           flexDirection: 'row',
           gap: 2,
