@@ -13,7 +13,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({ name, required, label,
     options, actions, ...props }) => {
     const [field, meta, helpers] = useField(name);
 
-    if(actions.hide) return null;
+    if (actions.hide) return null;
 
     return (
         <FormControl error={Boolean(meta.touched && meta.error)} data-test={`form-control-group-${name}`}>
@@ -28,6 +28,13 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({ name, required, label,
                 multiple={false}
                 disabled={actions.disable || props.disabled}
                 variant='soft'
+                slotProps={{
+                    button: {
+                        onBlur: () => {
+                            helpers.setTouched(true)
+                        }
+                    }
+                }}
                 sx={{
                     [`& .${selectClasses.indicator}`]: {
                         transition: '0.2s',

@@ -10,9 +10,8 @@ import Typography from '@mui/joy/Typography';
 export const FieldAutoComplete: React.FC<FieldAutoCompleteProps> = ({ name, label, placeholder,
     helperText, options, required, actions, ...props }) => {
     const [field, meta, helpers] = useField(name);
-
-
-    if(actions.hide) return null;
+    
+    if (actions.hide) return null;
 
     return (
         <FormControl error={Boolean(meta.touched && meta.error)} data-test={`form-control-group-${name}`}>
@@ -26,6 +25,13 @@ export const FieldAutoComplete: React.FC<FieldAutoCompleteProps> = ({ name, labe
                 disabled={actions.disable || props.disabled}
                 getOptionLabel={(option) => option.label || ''}
                 onChange={(_, value) => helpers.setValue(value ? value.value : '')}
+                slotProps={{
+                    input: {
+                        onBlur: () => {
+                            helpers.setTouched(true)
+                        }
+                    }
+                }}
                 value={options.find((option) => option.value === field.value) || null}
                 {...props}
             />
